@@ -7,8 +7,8 @@ app.post('/', users.create)
 
 app.get('/', users.findAll)
 
-app.get('/:noteId', users.findOne)
+app.get('/:fbId', users.findOne)
 
-app.put('/:noteId', users.update)
+app.put('/:_id', users.update)
 
-app.delete('/:noteId', users.delete)
+app.delete('/:_id', users.delete)

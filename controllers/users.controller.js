@@ -1,9 +1,9 @@
 const Users = require("../models/users.model")
 
 exports.create = (req, res) => {
-    if(!req.body.content) {
+    if(!req.body.name) {
         return res.status(400).send({
-            message: "User content cannot be empty"
+            message: "User name cannot be empty"
         })
     }
 
@@ -35,73 +35,73 @@ exports.findAll = (req, res) => {
 }
 
 exports.findOne = (req, res) => {
-    Users.findById(req.params.noteId)
+    Users.findOne({fbId:req.params.fbId})
     .then(user => {
         if(!user) {
             return res.status(404).send({
-                message: "user not found with id " + req.params.userId
+                message: "User not found with id " + req.params._id
             })
         }
         res.send(user)
     }).catch(err => {
         if(err.kind === "ObjectId") {
             return res.status(404).send({
-                message: "User not found with id " + req.params.userId
+                message: "User not found with id " + req.params._id
             })
         }
         return res.status(500).send({
-            message: "Error retrieving user with id " + req.params.userId
+            message: "Error retrieving user with id " + req.params._id
         })
     })
 }
 
 exports.update = (req, res) => {
-     if(!req.body.content) {
+     if(!req.body.name) {
         return res.status(400).send({
-            message: "Note content can not be empty"
+            message: "User name cannot be empty"
         })
     }
 
-    Users.findByIdAndUpdate(req.params.noteId, {
-        title: req.body.title || "Untitled Note",
+    Users.findByIdAndUpdate(req.params._id, {
+        title: req.body.title,
         content: req.body.content
     }, {new: true})
     .then(user => {
         if(!user) {
             return res.status(404).send({
-                message: "user not found with id " + req.params.userId
+                message: "user not found with id " + req.params._id
             })
         }
         res.send(user)
     }).catch(err => {
         if(err.kind === "ObjectId") {
             return res.status(404).send({
-                message: "User not found with id " + req.params.userId
+                message: "User not found with id " + req.params._id
             })
         }
         return res.status(500).send({
-            message: "Error updating user with id " + req.params.userId
+            message: "Error updating user with id " + req.params._id
         })
     })
 }
 
 exports.delete = (req, res) => {
-    Users.findByIdAndRemove(req.params.userId)
+    Users.findByIdAndRemove(req.params._id)
     .then(user => {
         if(!user) {
             return res.status(404).send({
-                message: "user not found with id " + req.params.userId
+                message: "user not found with id " + req.params._id
             })
         }
         res.send({message: "user deleted successfully!"})
     }).catch(err => {
         if(err.kind === "ObjectId" || err.name === "NotFound") {
             return res.status(404).send({
-                message: "user not found with id " + req.params.userId
+                message: "user not found with id " + req.params._id
             })
         }
         return res.status(500).send({
-            message: "Could not delete user with id " + req.params.userId
+            message: "Could not delete user with id " + req.params._id
         })
     })
 }

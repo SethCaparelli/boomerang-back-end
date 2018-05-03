@@ -10,7 +10,7 @@ exports.create = (req, res) => {
     const user = new Users({
         fbId: req.body.fbId,
         name: req.body.name,
-        email: req.body.email
+        email: req.body.email,
     })
 
     user.save()

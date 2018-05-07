@@ -1,4 +1,4 @@
-const Users = require("../models/spots.model")
+const Spots = require("../models/spots.model")
 
 exports.create = (req, res) => {
     if(!req.body.name) {
@@ -11,7 +11,8 @@ exports.create = (req, res) => {
         name: req.body.name,
         location: req.body.location,
         drinks: req.body.drinks,
-        picture: req.body.picture
+        picture: req.body.picture,
+        user: req.user._id
     })
 
     spot.save()
@@ -26,6 +27,7 @@ exports.create = (req, res) => {
 
 exports.findAll = (req, res) => {
     Spots.find()
+    .populate("user")
     .then(spots => {
         res.send(spots)
     }).catch(err => {

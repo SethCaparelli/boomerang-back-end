@@ -6,6 +6,7 @@ const port = process.env.PORT || 3000;
 
 const indexRouter = require("./routes/index")
 const usersRouter = require("./routes/api/users.route")
+const spotsRouter = require("./routes/api/spots.route")
 
 const app = express()
 
@@ -16,8 +17,6 @@ app.set('view engine', 'pug')
 
 const dbConfig = require("./config/database.config.js")
 const mongoose = require("mongoose")
-
-
 
 mongoose.Promise = global.Promise
 
@@ -31,6 +30,7 @@ mongoose.connect(dbConfig.url)
 
 app.use("/", indexRouter)
 app.use("/users", usersRouter)
+app.use("/spots", spotsRouter)
 
 app.use(function(req, res, next) {
   next(createError(404))

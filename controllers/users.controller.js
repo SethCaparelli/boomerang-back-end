@@ -1,5 +1,5 @@
 const Users = require("../models/users.model")
-
+console.log("Users::", Users)
 exports.create = (req, res) => {
     if(!req.body.name) {
         return res.status(400).send({

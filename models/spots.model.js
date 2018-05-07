@@ -1,41 +1,26 @@
 const mongoose = require("mongoose")
+const Schema = mongoose.Schema
 
 const SpotSchema = new mongoose.Schema({
-    fbId: {
-        type: Number,
-        default: 0
-    },
     name: {
         type: String,
         default: ""
     },
-    email: {
-        type: String,
-        default: ""
+    location: {
+        type: Object,
+        default: {}
     },
     picture: {
         type: Object,
         default: {}
     },
-    friends: {
-        type: Array,
-        default: []
+    drinks: {
+        type: Object,
+        default: {}
     },
-    boomerangReceived: {
-        type: Array,
-        default: []
-    },
-    boomerangSent: {
-        type: Array,
-        default: []
-    },
-    spots: {
-        type: Array,
-        default: []
-    },
-    isDeleted: {
-        type: Boolean,
-        default: false
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: "User"
     }
 })
 

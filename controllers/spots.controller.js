@@ -12,7 +12,6 @@ exports.create = (req, res) => {
         location: req.body.location,
         drinks: req.body.drinks,
         picture: req.body.picture,
-        user: req.user._id
     })
 
     spot.save()
@@ -38,7 +37,7 @@ exports.findAll = (req, res) => {
 }
 
 exports.findOne = (req, res) => {
-    Spots.findOneById(req.params._id)
+    Spots.findById(req.params._id)
     .then(user => {
         if(!user) {
             return res.status(404).send({
@@ -65,12 +64,14 @@ exports.update = (req, res) => {
         })
     }
 
-    Users.findOneAndUpdate(req.params._id, {
+    Spots.findOneAndUpdate(req.params._id, {
         name: req.body.name,
         location: req.body.location,
-        drinks: req.body.drinks
+        drinks: req.body.drinks,
+        picture: req.body.picture,
+        user: req.body._id
     }, {new: true})
-    .then(spots => {
+    .then(spot => {
         if(!spot) {
             return res.status(404).send({
                 message: "Spot not found with id " + req.params._id
@@ -83,15 +84,16 @@ exports.update = (req, res) => {
                 message: "Spot not found with id " + req.params._id
             })
         }
+        console.log(err)
         return res.status(500).send({
-            message: "Error updating user with id " + req.params._id
+            message: "Error updating spot with id " + req.params._id
         })
     })
 }
 
 exports.delete = (req, res) => {
     Spots.findByIdAndRemove(req.params._id)
-    .then(spots => {
+    .then(spot => {
         if(!spot) {
             return res.status(404).send({
                 message: "Spot not found with id " + req.params._id

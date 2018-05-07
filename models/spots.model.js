@@ -8,15 +8,22 @@ const SpotSchema = new mongoose.Schema({
     },
     location: {
         type: Object,
-        default: {}
+        default: {
+            latitude: 0,
+            longitude: 0
+        }
     },
     picture: {
-        type: Object,
-        default: {}
+        type: String,
+        default: ""
     },
     drinks: {
         type: Object,
-        default: {}
+        default: {
+            beer: 0,
+            wine: 0,
+            cocktail: 0
+        }
     },
     user: {
         type: Schema.Types.ObjectId,

@@ -1,46 +1,46 @@
-const Users = require("../models/users.model")
+const Users = require("../models/spots.model")
 
 exports.create = (req, res) => {
     if(!req.body.name) {
         return res.status(400).send({
-            message: "User name cannot be empty"
+            message: "Spot name cannot be empty"
         })
     }
 
-    const user = new Users({
-        fbId: req.body.fbId,
+    const spot = new Spots({
         name: req.body.name,
-        email: req.body.email,
+        location: req.body.location,
+        drinks: req.body.drinks,
         picture: req.body.picture
     })
 
-    user.save()
+    spot.save()
     .then(data => {
         res.send(data)
     }).catch(err => {
         res.status(500).send({
-            message: err.message || "Some error occurred while creating the User."
+            message: err.message || "Some error occurred while creating the Spot."
         })
     })
 }
 
 exports.findAll = (req, res) => {
-    Users.find()
-    .then(users => {
-        res.send(users)
+    Spots.find()
+    .then(spots => {
+        res.send(spots)
     }).catch(err => {
         res.status(500).send({
-            message: err.message || "Some error occurred while retrieving users."
+            message: err.message || "Some error occurred while retrieving spots."
         })
     })
 }
 
 exports.findOne = (req, res) => {
-    Users.findOne({fbId:req.params.fbId})
+    Spots.findOneById(req.params._id)
     .then(user => {
         if(!user) {
             return res.status(404).send({
-                message: "User not found with id " + req.params._id
+                message: "Spots not found with id " + req.params._id
             })
         }
         res.send(user)
@@ -63,26 +63,22 @@ exports.update = (req, res) => {
         })
     }
 
-    Users.findOneAndUpdate({fbId:req.params.fbId}, {
+    Users.findOneAndUpdate(req.params._id, {
         name: req.body.name,
-        email: req.body.email,
-        boomerangReceived: req.body.boomerangReceived,
-        boomerangSent: req.body.boomerangSent,
-        isDeleted: req.body.isDeleted,
-        spots: req.body.spots,
-        friends: req.body.friends
+        location: req.body.location,
+        drinks: req.body.drinks
     }, {new: true})
-    .then(user => {
-        if(!user) {
+    .then(spots => {
+        if(!spot) {
             return res.status(404).send({
-                message: "user not found with id " + req.params._id
+                message: "Spot not found with id " + req.params._id
             })
         }
-        res.send(user)
+        res.send(spot)
     }).catch(err => {
         if(err.kind === "ObjectId") {
             return res.status(404).send({
-                message: "User not found with id " + req.params._id
+                message: "Spot not found with id " + req.params._id
             })
         }
         return res.status(500).send({
@@ -92,22 +88,22 @@ exports.update = (req, res) => {
 }
 
 exports.delete = (req, res) => {
-    Users.findByIdAndRemove(req.params._id)
-    .then(user => {
-        if(!user) {
+    Spots.findByIdAndRemove(req.params._id)
+    .then(spots => {
+        if(!spot) {
             return res.status(404).send({
-                message: "user not found with id " + req.params._id
+                message: "Spot not found with id " + req.params._id
             })
         }
-        res.send({message: "user deleted successfully!"})
+        res.send({message: "Spot deleted successfully!"})
     }).catch(err => {
         if(err.kind === "ObjectId" || err.name === "NotFound") {
             return res.status(404).send({
-                message: "user not found with id " + req.params._id
+                message: "spot not found with id " + req.params._id
             })
         }
         return res.status(500).send({
-            message: "Could not delete user with id " + req.params._id
+            message: "Could not delete spot with id " + req.params._id
         })
     })
 }

@@ -9,6 +9,6 @@ app.get('/', users.findAll)
 
 app.get('/:fbId', users.findOne)
 
-app.put('/:_id', users.update)
+app.put('/:fbId', users.update)
 
 app.delete('/:_id', users.delete)

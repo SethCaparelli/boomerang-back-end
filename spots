@@ -1,39 +1,78 @@
-{
-    name: "Williams and Graham",
-    Location: {
-        latitude: 39.7618722,
-        longitude: -105.01102029999998,
+  {
+        "name": "Linger",
+        "location": {
+            "latitude": 39.7595239,
+            "longitude": -105.01138270000001
+        },
+        "picture": "https://s3-us-west-2.amazonaws.com/boomerang-pics/linger.png",
+        "drinks": [
+            {
+            "type: "beer",
+            "price": "$10"
+            },
+            {"wine": "$12"},
+            {"cocktail": "$11"}
+        ],
+        "address": " 2030 W 30th Ave, Denver, CO 80211"
     },
-    drinks: {
-        beer: "$10",
-        wine: "$12",
-        cocktail: "$11"
+    {
+        "name": "Williams & Graham",
+        "location": {
+            "latitude": 39.7618722,
+            "longitude": -105.01102029999998
+        },
+        "picture": "https://s3-us-west-2.amazonaws.com/boomerang-pics/williams_and_graham.jpeg",
+        "drinks": [
+            {
+            "type": "beer",
+            "price": "$10"
+            },
+            {
+            "type": "wine",
+            "price": "$12"
+            },
+            {
+            "type": "cocktail",
+            "price": "$11"
+            }
+        ],
+        "address": "3160 Tejon St, Denver, CO 80211"
     },
-    picture: "/assets/spots/williams_and_graham.jpg"
-},
-{
-    name: "Ale House",
-    Location: {
-        latitude: 39.7586263,
-        longitude: -105.0092171
+    {
+        "name": "Ale House",
+        "location": {
+            "latitude": 39.7586263,
+            "longitude": -105.0092171
+        },
+        "picture": "https://s3-us-west-2.amazonaws.com/boomerang-pics/ale_house.jpeg",
+        "drinks": [
+            {
+            "type: "beer",
+            "price": "$8"
+            },
+            {
+            "type: "wine",
+            "price":"$10"
+            },
+            {
+            "type": "cocktail",
+            "price": "$10"
+            }
+        ],
+        "address": "2501 16th St, Denver, CO 80211"
     },
-    drinks: {
-        beer: "$8",
-        wine: "$10",
-        cocktail: "$10"
-    },
-    picture: "/assets/spots/ale_house.jpg"
-},
-{
-    name: "Linger",
-    location: {
-        latitude: 39.7595239,
-        longitude: -105.01138270000001,
-    },
-    drinks: {
-        beer: "$10",
-        wine: "$12",
-        cocktail: "$11"
-    },
-    picture: "/assets/spots/williams_and_graham.jpg"
-}
+    {
+        "name": "Denver Beer Co",
+        "location": {
+            "latitude": 39.7582658,
+            "longitude": -105.00732260000001
+        },
+        "picture": "https://s3-us-west-2.amazonaws.com/boomerang-pics/denver_beer_co.jpg",
+        "drinks": [
+            {
+            "type": "beer",
+            "price": "$8"
+            }
+        ],
+        "address": "1695 Platte St, Denver, CO 80202"
+    }

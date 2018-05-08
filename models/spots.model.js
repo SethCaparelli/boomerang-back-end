@@ -18,12 +18,8 @@ const SpotSchema = new mongoose.Schema({
         default: ""
     },
     drinks: {
-        type: Object,
-        default: {
-            beer: 0,
-            wine: 0,
-            cocktail: 0
-        }
+        type: Array,
+        default: []
     },
     user: {
         type: Schema.Types.ObjectId,
